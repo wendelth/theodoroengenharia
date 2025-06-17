@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Theodoro Engenharia - Inovação, qualidade e sustentabilidade em engenharia civil." />
+  <title>Theodoro Engenharia</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-color: #004080;
+      --secondary-color: #ffcc00;
+      --background-color: #f5f7fa;
+      --text-color: #222;
+      --shadow-color: rgba(0, 0, 0, 0.15);
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--primary-color);
+      color: white;
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px var(--shadow-color);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-speed);
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+    }
+
+    main {
+      padding: 100px 20px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      border-bottom: 3px solid var(--secondary-color);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    p, ul {
+      font-size: 1.1rem;
+      max-width: 750px;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    /* Portfolio */
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .portfolio-item {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px var(--shadow-color);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .portfolio-item:hover {
+      transform: scale(1.05);
+      z-index: 10;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .portfolio-desc {
+      padding: 15px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    /* Contact form */
+
+    form {
+      max-width: 500px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px var(--shadow-color);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color var(--transition-speed);
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--secondary-color);
+      outline: none;
+    }
+
+    button {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background var(--transition-speed);
+    }
+
+    button:hover {
+      background: #e6b800;
+    }
+
+    /* Footer */
+
+    footer {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 0.9rem;
+      box-shadow: 0 -2px 8px var(--shadow-color);
+      user-select: none;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        background: var(--primary-color);
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 200px;
+        height: calc(100% - 60px);
+        padding-top: 20px;
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 8px var(--shadow-color);
+      }
+
+      nav.open {
+        right: 0;
+      }
+
+      nav a {
+        margin: 10px 0;
+      }
+
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        color: white;
+        font-size: 1.8rem;
+        user-select: none;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Theodoro Engenharia</h1>
+  <div class="menu-toggle" aria-label="Menu">&#9776;</div>
+  <nav id="navbar">
+    <a href="#sobre" class="active">Sobre</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#portfolio">Portfólio</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<main>
+  <section id="sobre">
+    <h2>Sobre Nós</h2>
+    <p>
+      Fundada por Wendel Theodoro, a Theodoro Engenharia é referência em inovação, qualidade e sustentabilidade em projetos de engenharia civil para residências, comércios e indústrias. Com mais de 10 anos de experiência, entregamos soluções inteligentes para transformar sonhos em realidade.
+    </p>
+  </section>
+
+  <section id="servicos">
+    <h2>Serviços</h2>
+    <ul>
+      <li>Projetos arquitetônicos e estruturais personalizados</li>
+      <li>Consultoria técnica especializada</li>
+      <li>Gerenciamento e supervisão de obras</li>
+      <li>Análises de viabilidade técnica e ambiental</li>
+      <li>Incorporação de tecnologias sustentáveis</li>
+    </ul>
+  </section>
+
+  <section id="portfolio">
+    <h2>Portfólio</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item" tabindex="0" aria-label="Projeto residencial com fachada moderna">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Projeto residencial fachada moderna" />
+        <div class="portfolio-desc">Residência Moderna</div>
+      </div>
+      <div class="portfolio-item" tabindex="0" aria-label="Projeto comercial com fachada envidraçada">
+        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80" alt="Projeto comercial fachada envidraçada" />
+        <div class="portfolio-desc">Centro Comercial</div>
+      </div>
+      <div class="portfolio-item" tabindex="0" aria-label="Obra industrial com estrutura metálica">
+        <img src="https://images.unsplash.com/photo-1519821172142-4f88f8a6e91b?auto=format&fit=crop&w=800&q=80" alt="Obra industrial estrutura metálica" />
+        <div class="portfolio-desc">Complexo Industrial</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <h2>Contato</h2>
+    <form id="contactForm" novalidate>
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" required placeholder="Seu nome completo" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="seu@email.com" />
+
+      <label for="telefone">Telefone</label>
+      <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" />
+
+      <label for="mensagem">Mensagem</label>
+      <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Escreva sua mensagem..."></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="statusMessage" aria-live="polite" style="margin-top: 10px; font-weight: bold;"></p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Theodoro Engenharia - Todos os direitos reservados.</p>
+  <p>Contato: wendellegal21@gmail.com | (18) 99750-0224</p>
+</footer>
+
+<script>
+  // Menu toggle para mobile
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('navbar');
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+
+  // Destacar menu ativo conforme scroll
+  const sections = document.querySelectorAll('section');
+  const navLinks = nav.querySelectorAll('a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+
+    // Animação das seções
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if (sectionTop < window.innerHeight - 100) {
+        section.classList.add('visible');
+      }
+    });
+  });
+
+  // Formulário simples com validação e mensagem
+  const form = document.getElementById('contactForm');
+  const statusMessage = document.getElementById('statusMessage');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Validação simples
+    const nome = form.nome.value.trim();
+    const email = form.email.value.trim();
+    const mensagem = form.mensagem.value.trim();
+
+    if (!nome || !email || !mensagem) {
+      statusMessage.style.color = 'red';
+      statusMessage.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+      return;
+    }
+
+    // Simula envio
+    statusMessage.style.color = 'green';
+    statusMessage.textContent = 'Mensagem enviada com sucesso! Obrigado por entrar em contato.';
+
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
